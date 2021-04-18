@@ -114,6 +114,7 @@ void P2G(void)
 		  0.5 * (tmpc.cwiseProduct(tmpc))
 		};
 
+		// Snow
 		// Compute current Lamé parameters [https://www.seas.upenn.edu/~cffjiang/research/mpmcourse/mpmcourse.pdf Eqn. 87]
 		double e = exp(HARD * (1.0 - p.Jp));
 		double mu = MU_0 * e;
@@ -179,12 +180,12 @@ void UpdateGridVelocity(void) {
 				double y = (double)j / GRID_RES;
 
 				// Sticky boundary
-				if (x < boundary || x > 1 - boundary || y > 1 - boundary) {
-					g = Vector3d::Zero();
+				if (x < boundary || x > 1 - boundary) { 
+					g[0] = 0.0;
 				}
 				// Separate boundary
-				if (y < boundary) {
-					g[1] = std::max(0.0, (double)g[1]);
+				if (y < boundary || y > 1 - boundary) {
+					g[1] = 0.0;
 				}
 			}
 		}
