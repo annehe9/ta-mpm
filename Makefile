@@ -20,8 +20,8 @@ OPENGL_LIBS       = -lfreeglut -lglew32 -lopengl32
 TARGET = mpm
 CC = g++
 LD = g++
-CFLAGS = -m32 -std=c++11 -O3 -Wall -Wno-deprecated -pedantic -Wno-vla-extension $(INCLUDE_PATH) -I./include -I./src -DNDEBUG
-LFLAGS = -m32 -std=c++11 -O3 -Wall -Wno-deprecated -Werror -pedantic $(LIBRARY_PATH) -DNDEBUG
+CFLAGS = -m32 -std=c++11 -O3 -Wno-deprecated -pedantic $(INCLUDE_PATH) -I./include -I./src -DNDEBUG
+LFLAGS = -m32 -std=c++11 -O3 -Wno-deprecated -Werror -pedantic $(LIBRARY_PATH) -DNDEBUG
 LIBS = $(OPENGL_LIBS)
 
 OBJS = obj/main.o
@@ -38,7 +38,6 @@ obj/main.o: src/main.cpp
 	$(CC) $(CFLAGS) -c src/main.cpp -o obj/main.o
 
 clean:
-	rm -f $(OBJS)
-	rm -f $(TARGET)
-	rm -f $(TARGET).exe
+	rmdir /s /q obj
+	rmdir /s /q -p
 
